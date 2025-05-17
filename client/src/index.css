@@ -1,109 +1,250 @@
-@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,200;6..12,300;6..12,400;6..12,500;6..12,600;6..12,700;6..12,800;6..12,900;6..12,1000&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap');
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Nunito Sans", sans-serif;
+:root {
+  font-family: 'Noto Sans', sans-serif;
 }
 
+body {
+  font-family: inherit;
+  background-color: #f8fafc;
+  margin: 0;
+  padding: 0;
+}
+
+/* Layout */
 .page-wrapper {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   min-height: 100vh;
-  background-color: #f3f4f6;
+  padding: 20px;
 }
 
 .login-container {
   display: flex;
   flex-direction: column;
-  gap: 40px;
-  align-items: center;
-  justify-content: center;
+  gap: 2rem;
+  max-width: 1200px;
   width: 100%;
-  padding: 20px;
+  background: linear-gradient(to bottom right, white, #eff6ff);
+  border-radius: 40px;
+  padding: 2.5rem;
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.08);
+}
+
+@media (min-width: 1024px) {
+  .login-container {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+  }
 }
 
 .left-side {
-  width: 100%;
-  height: 200px;
-}
-
-.center-section {
-  max-width: 600px;
-  background-color: #ffffff;
-  padding: 30px;
-  border-radius: 12px;
+  flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  align-items: center;
-  text-align: center;
+  justify-content: center;
+  gap: 2rem;
+  padding: 1rem;
 }
 
-.tagline {
-  font-size: 1rem;
-  color: #4b5563;
-  border: 1px solid #d1d5db;
-  background-color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 999px;
-}
-
-.title-line {
-  color: #1d4ed8;
-  font-weight: 800;
-  font-size: 2.5rem;
-}
-
-/* Right side container for floating circle */
 .right-side {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  gap: 1.5rem;
+}
+
+.circle-container {
+  position: relative;
   height: 200px;
   width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  overflow: hidden;
+  display: none;
 }
 
-/* Floating circle inside a smaller range with smooth motion */
-/* Dramatic floating circle inside the right-side area */
-/* Floating circle with dramatic upward motion starting from bottom */
+@media (min-width: 1024px) {
+  .circle-container {
+    display: block;
+  }
+}
+
+/* Floating animated circle */
 .dvd-circle {
   position: absolute;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 65% 35%, rgba(99, 102, 241, 0.3), rgba(79, 70, 229, 0.2), transparent 70%);
+  animation: floatBig 8s ease-in-out infinite;
+  filter: blur(6px);
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  background: rgba(203, 37, 156, 0.671);
-  box-shadow: 0 0 25px 5px rgba(203, 37, 156, 0.5);
-  animation: floatBig 6s ease-in-out infinite;
 }
 
 @keyframes floatBig {
-  0% {
-    transform: translateX(-50%) translateY(0);
+  0%, 100% {
+    transform: translate(-50%, 0) rotate(0deg);
   }
-  20% {
-    transform: translateX(50px) translateY(-60px);
+  25% {
+    transform: translate(-30%, -30%) rotate(10deg);
   }
-  40% {
-    transform: translateX(-60px) translateY(-100px);
+  50% {
+    transform: translate(-70%, -50%) rotate(-10deg);
   }
-  60% {
-    transform: translateX(40px) translateY(-90px);
-  }
-  80% {
-    transform: translateX(-80px) translateY(-50px);
-  }
-  100% {
-    transform: translateX(-50%) translateY(0);
+  75% {
+    transform: translate(-30%, -20%) rotate(5deg);
   }
 }
 
+/* Typography */
+.title-line {
+  background: linear-gradient(45deg, #3b82f6, #6366f1);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: 700;
+  font-size: 2.8rem;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  margin: 0;
+  padding-bottom: 0.1em;
+}
 
+.tagline {
+  font-size: 0.875rem;
+  color: #4b5563;
+  border: 1px solid #e2e8f0;
+  background-color: white;
+  padding: 0.5rem 1.25rem;
+  border-radius: 9999px;
+  font-weight: 500;
+  display: inline-block;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+  margin-top: 1rem;
+}
+
+.streamline-text {
+  font-size: 1rem;
+  color: #1e3a8a;
+  font-weight: 500;
+  text-align: left;
+  max-width: 420px;
+  width: 100%;
+}
+
+/* Form */
+.form-container {
+  background-color: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(4px);
+  border-radius: 32px;
+  border: 1px solid #f1f5f9;
+  padding: 2rem;
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  transition: all 0.3s ease;
+}
+
+.form-container:hover {
+  box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.1);
+}
+
+.form-header {
+  text-align: center;
+}
+
+.welcome-text {
+  font-size: 1.8rem;
+  font-weight: bold;
+  background: linear-gradient(45deg, #3b82f6, #6366f1);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin: 0;
+}
+
+.subtext {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin-top: 0.25rem;
+}
+
+/* Inputs */
+.input-field {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  border-radius: 9999px;
+  padding: 0.75rem 1.5rem;
+  border: 1px solid #e2e8f0;
+  font-family: 'Noto Sans', sans-serif;
+  font-size: 0.9rem;
+}
+
+/* Form options */
+.form-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.875rem;
+  margin-top: -0.5rem;
+}
+
+.remember-me {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #4b5563;
+}
+
+.forgot-password {
+  color: #3b82f6;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.forgot-password:hover {
+  text-decoration: underline;
+}
+
+/* Button */
+.submit-button {
+  background: linear-gradient(to right, #3b82f6, #6366f1);
+  color: white;
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 9999px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  box-shadow: 0 4px 15px -2px rgba(0, 0, 0, 0.08);
+}
+
+.submit-button:hover {
+  background: linear-gradient(to right, #2563eb, #4f46e5);
+}
+
+/* Sign up */
+.signup-text {
+  text-align: center;
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.signup-link {
+  color: #3b82f6;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.signup-link:hover {
+  text-decoration: underline;
+}
