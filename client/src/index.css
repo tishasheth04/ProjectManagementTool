@@ -11,7 +11,279 @@ body {
   padding: 0;
 }
 
-/* Layout */
+/* Main Layout */
+.app-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Sidebar Styles - UPDATED Z-INDEX */
+.sidebar-wrapper {
+  width: 250px;
+  background-color: white;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 20; /* Increased from 10 to 20 */
+}
+
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sidebar-logo-icon {
+  font-size: 1.8rem;
+  color: #3b82f6;
+}
+
+.sidebar-logo-text {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #3b82f6;
+}
+
+.sidebar-links-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  color: #4b5563;
+  text-decoration: none;
+  transition: all 0.2s;
+  gap: 0.75rem;
+}
+
+.sidebar-link:hover {
+  background-color: #f3f4f6;
+}
+
+.sidebar-link.active {
+  background-color: #e0e7ff;
+  color: #3b82f6;
+  font-weight: 500;
+}
+
+.sidebar-settings {
+  margin-top: auto;
+  padding-top: 1rem;
+}
+
+.sidebar-settings-button {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  color: #4b5563;
+  background: none;
+  border: none;
+  width: 100%;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.sidebar-settings-button:hover {
+  background-color: #f3f4f6;
+}
+
+/* Main Content Area - UPDATED PADDING */
+.main-content {
+  margin-left: 315px;
+  flex: 1;
+  padding: 2rem;
+  padding-top: 100px; /* Increased from 60px to 80px */
+  min-height: 150vh;
+}
+
+/* Navbar Styles - UPDATED POSITIONING */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  padding: 0.75rem 2rem;
+  position: fixed;
+  top: 0;
+  left: 250px; /* Align with sidebar */
+  right: 0;
+  z-index: 15; /* Lower than sidebar */
+  height: 60px;
+  box-shadow: none;
+  border-bottom: 1px solid #f1f5f9;
+  width: calc(100% - 250px); /* Added to fit remaining space */
+}
+
+.navbar-left {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.hamburger-menu {
+  font-size: 24px;
+  color: #4b5563;
+  display: none;
+  cursor: pointer;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  gap: 8px;
+  border-radius: 9999px;
+  background-color: #f3f4f6;
+  width: 70%;  /* Increased width to move search bar further right */
+  margin-left: auto; /* This will push the search bar to the right */
+}
+
+.search-icon {
+  font-size: 24px;
+  color: #6b7280;
+}
+
+.search-input {
+  flex: 1;
+  outline: none;
+  background: transparent;
+  color: #1e293b;
+  font-size: 14px;
+  padding: 4px;
+  border: none;
+}
+
+/* Navbar Right - UPDATED NOTIFICATION STYLES */
+.navbar-right {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  padding-right: 40px; /* Move the icons more to the left */
+}
+
+.notification-icon {
+  font-size: 10rem; /* Increased size */
+  color: #4b5563;
+  cursor: pointer;
+  position: relative;
+  margin-left: 10px; /* Move the bell icon more to the left */
+}
+
+.notification-badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #ef4444;
+  color: white;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: bold;
+  transform: translate(25%, -25%); /* Perfect top-right position */
+  border: 2px solid white; /* Makes badge stand out */
+}
+
+.user-avatar-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem; /* Space between notification and avatar */
+}
+
+.avatar-button {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background-color: #3b82f6;
+  font-size: 1.1rem;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.avatar-text {
+  font-weight: 600;
+}
+
+.menu-container {
+  position: relative;
+}
+
+.menu-items {
+  position: absolute;
+  right: 0;
+  margin-top: 0.5rem;
+  width: 220px;
+  background-color: white;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  z-index: 10;
+  transition: all 0.2s;
+}
+
+.menu-content {
+  padding: 1rem;
+}
+
+.menu-item {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  border-radius: 6px;
+  color: #4b5563;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.menu-item:hover {
+  background-color: #f3f4f6;
+}
+
+.menu-icon {
+  margin-right: 0.75rem;
+}
+
+.logout-button {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  border-radius: 6px;
+  color: #dc2626;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.logout-button:hover {
+  background-color: #f3f4f6;
+}
+
+/* Login Page Styles */
 .page-wrapper {
   display: flex;
   justify-content: center;
@@ -72,7 +344,6 @@ body {
   }
 }
 
-/* Floating animated circle */
 .dvd-circle {
   position: absolute;
   width: 180px;
@@ -101,7 +372,6 @@ body {
   }
 }
 
-/* Typography */
 .title-line {
   background: linear-gradient(45deg, #3b82f6, #6366f1);
   -webkit-background-clip: text;

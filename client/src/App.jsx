@@ -7,23 +7,26 @@ import Tasks from './pages/Tasks';
 import Trash from './pages/Trash';
 import Users from './pages/Users';
 import { useSelector } from 'react-redux';
+import Sidebar from './components/Sidebar';
+import Navbar from './components/Navbar'; // Import Navbar component
+import NotificationPanel from './components/NotificationPanel'; // Import NotificationPanel
 
 function Layout() {
-  const {user} = useSelector((state)=> state.auth);
+  const { user } = useSelector((state) => state.auth);
   const location = useLocation();
 
   return user ? (
-    <div className='w-full h-screen flex flex-col md:flex-row'>
-      <div className="w-1/5 h-screen bg-white sticky top-0 hidden md:block">
-         <Sidebar />
+    <div className="app-container">
+      <div className="sidebar-wrapper">
+        <Sidebar />
       </div>
 
-      {/* <MobileSidebar /> */}
-
-      <div className="flex-1 overflow-y-auto">
-        {/* <NavBar /> */}
-
-        <div className="p-4 2xl:px-10">
+      <div className="main-content">
+        {/* Navbar at the top */}
+        <Navbar />
+        
+        {/* Main content area */}
+        <div className="content-wrapper">
           <Outlet />
         </div>
       </div>
@@ -35,7 +38,7 @@ function Layout() {
 
 function App() {
   return (
-    <main className='w-full min-h-screen bg-[#f3f4f6]'>
+    <main className="app-main">
       <Routes>
         <Route element={<Layout />}>
           <Route index path="/" element={<Navigate to="/dashboard" />} />

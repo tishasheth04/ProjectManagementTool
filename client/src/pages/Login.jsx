@@ -29,11 +29,14 @@ const Login = () => {
     navigate('/dashboard');
   };
 
+  // Commenting out the useEffect hook that automatically redirects to the dashboard
+  /*
   useEffect(() => {
     if (user) {
       navigate('/dashboard');
     }
   }, [user, navigate]);
+  */
 
   return (
     <div className="page-wrapper font-noto">
