@@ -2,9 +2,13 @@ import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import Textbox from '../components/Textbox';
+import { useSelector, useDispatch } from 'react-redux';
+import { setCredentials } from '../redux/slices/authSlice';
 
 const Login = () => {
-  const user = '';
+  const { user } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const {
     register,
@@ -12,15 +16,24 @@ const Login = () => {
     formState: { errors, isSubmitted },
   } = useForm({ mode: 'onChange' });
 
-  const navigate = useNavigate();
-
   const submitHandler = async (data) => {
     console.log("submit", data);
+
+    // Simulated fake login
+    const fakeUser = {
+      name: "Test User",
+      email: data.email,
+    };
+
+    dispatch(setCredentials(fakeUser));
+    navigate('/dashboard');
   };
 
   useEffect(() => {
-    user && navigate('/dashboard');
-  }, [user]);
+    if (user) {
+      navigate('/dashboard');
+    }
+  }, [user, navigate]);
 
   return (
     <div className="page-wrapper font-noto">
