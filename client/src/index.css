@@ -518,3 +518,91 @@ body {
 .signup-link:hover {
   text-decoration: underline;
 }
+/* Dashboard Styles */
+.dashboard-wrapper {
+  padding: 2rem 1.5rem 2rem 1rem; /* Reduced left padding to shift left */
+  margin-left: 0px; /* You can decrease this slightly if needed */
+}
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.dashboard-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem;
+  border-radius: 12px;
+  background-color: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease;
+}
+
+.dashboard-card:hover {
+  transform: translateY(-4px);
+}
+
+.dashboard-card-icon {
+  font-size: 1.8rem; /* Smaller icon size */
+  color: white;
+  padding: 0.75rem;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dashboard-card-info {
+  text-align: right;
+}
+
+.dashboard-card-label {
+  font-size: 1.2rem;
+  
+  color: #4b5563;
+}
+
+.dashboard-card-count {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #1e293b;
+}
+
+/* Custom background classes for card icons */
+.bg-blue .dashboard-card-icon {
+  background-color: #1d4ed8;
+}
+.bg-green .dashboard-card-icon {
+  background-color: #0f766e;
+}
+.bg-yellow .dashboard-card-icon {
+  background-color: #f59e0b;
+}
+.bg-pink .dashboard-card-icon {
+  background-color: #be185d;
+}
+.dashboard-card-subtext {
+  font-size: 0.9rem;      /* Much smaller text */
+  color: #4b5563;         /* Same gray as your labels */
+  margin-top: 0.25rem;
+}
+
+/* Chart Container Styles */
+.chart-container {
+  width: 100%;
+  background-color: white;
+  margin: 4rem 0;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.chart-title {
+  font-size: 1.25rem;
+  color: #4b5563;
+  font-weight: 600;
+  margin: 0;
+}
+

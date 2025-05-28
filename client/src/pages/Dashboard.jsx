@@ -1,83 +1,74 @@
-import React from 'react'
-
-import{
-    MdAdminPanelSettings,
-    MdKeyboardArrowDown,
-    MdKeyboardArrowUp,
-    MdKeyboardDoubleArrowUp,
+import React from 'react';
+import {
+  MdAdminPanelSettings,
+  MdEdit
 } from "react-icons/md";
-import { LuClipboardEdit } from "react-icons/lu";
-import { FaNewspaper, FaUsers } from "react-icons/fa";
+import { FaNewspaper } from "react-icons/fa";
 import { FaArrowsToDot } from "react-icons/fa6";
-import moment from "moment";
-
-/*import { summary } from "../assets/data";
-import clsx from "clsx";
+import { summary } from "../assets/data"; // Ensure this file and export exist
 import { Chart } from "../components/Chart";
-import { BGS, PRIOTITYSTYELS, TASK_TYPE, getInitials } from "../utils";
-import UserInfo from "../components/UserInfo";*/
 
 const Dashboard = () => {
+  const totals = summary.tasks;
 
-    const totals = summary.tasks
-    const stats = [
+  const stats = [
     {
       _id: "1",
       label: "TOTAL TASK",
       total: summary?.totalTasks || 0,
       icon: <FaNewspaper />,
-      bg: "bg-[#1d4ed8]",
+      bgClass: "bg-blue",
     },
     {
       _id: "2",
-      label: "COMPLTED TASK",
+      label: "COMPLETED TASK",
       total: totals["completed"] || 0,
       icon: <MdAdminPanelSettings />,
-      bg: "bg-[#0f766e]",
+      bgClass: "bg-green",
     },
     {
       _id: "3",
-      label: "TASK IN PROGRESS ",
+      label: "TASK IN PROGRESS",
       total: totals["in progress"] || 0,
-      icon: <LuClipboardEdit />,
-      bg: "bg-[#f59e0b]",
+      icon: <MdEdit />,
+      bgClass: "bg-yellow",
     },
     {
       _id: "4",
       label: "TODOS",
       total: totals["todo"],
       icon: <FaArrowsToDot />,
-      bg: "bg-[#be185d]" || 0,
+      bgClass: "bg-pink",
     },
   ];
 
-    const Card = ({label, count, bg, icon})=>{
-        return(
-            <div className='w-full h-32 bg-white p-5 shadow-md rounded-md flex items-center justify-between'>
-                <div className='h-full flex flex-1 flex-col justify-between'>
-                    <p>{label}</p>
-                </div>
-            </div>
-        );
-    };
+  const Card = ({ label, count, icon, bgClass }) => {
     return (
-        <div className='h-full py-4'>
-            <div className='grid grid-cols-1 md:grid-cols-4 gap-5'>
-            {
-                stats.map(({icon, bg, label, total}, index)=> (
-                    <Card
-                    key={index}
-                    icon={icon}
-                    bg={bg}
-                    label={label}
-                    count={total}
-
-                    />
-                ))
-            }
+      <div className={`dashboard-card ${bgClass}`}>
+        <div className="dashboard-card-icon">{icon}</div>
+        <div className="dashboard-card-info">
+          <p className="dashboard-card-label">{label}</p>
+          <p className="dashboard-card-count">{count}</p>
+          <p className="dashboard-card-subtext">110 last month</p>
         </div>
-    </div>
+      </div>
     );
+  };
+
+  return (
+    <div className="dashboard-wrapper">
+      <div className="dashboard-grid">
+        {stats.map(({ icon, bgClass, label, total }, index) => (
+          <Card key={index} icon={icon} bgClass={bgClass} label={label} count={total} />
+        ))}
+      </div>
+
+      <div className="chart-container">
+        <h4 className="chart-title">Chart By Priority</h4>
+        <Chart/>
+      </div>
+    </div>
+  );
 };
 
 export default Dashboard;
