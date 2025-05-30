@@ -10,6 +10,8 @@ import { FaNewspaper } from "react-icons/fa";
 import { FaArrowsToDot } from "react-icons/fa6";
 import { summary } from "../assets/data";
 import { Chart } from "../components/Chart";
+import UserInfo from "../components/UserInfo";
+
 
 // Static background styles for team badges
 const BGS = ["bg1", "bg2", "bg3", "bg4"];
@@ -53,6 +55,8 @@ const TaskTable = ({ tasks }) => {
           {task.team.map((m, index) => (
             <div key={index} className={`team-badge ${BGS[index % BGS.length]}`}>
               {m[0]}
+
+              <UserInfo user={m} index={index} />
             </div>
           ))}
         </div>
@@ -140,6 +144,7 @@ const Dashboard = () => {
 
       <div className="task-table-section">
         <TaskTable tasks={summary.last10Task} />
+
       </div>
     </div>
   );

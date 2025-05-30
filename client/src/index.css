@@ -876,3 +876,129 @@ html, body {
     grid-template-columns: 1fr;
   }
 }
+/*USER INFO*/
+.user-info-wrapper {
+  padding: 0.5rem;
+  position: relative;
+}
+
+.user-info-popover {
+  position: relative;
+}
+
+.user-info-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.user-avatar-mini {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  color: white;
+  font-weight: 600;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s;
+}
+
+.user-avatar-mini:hover {
+  transform: scale(1.05);
+}
+
+.user-info-panel {
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  transform: translateX(-50%);
+  z-index: 100;
+  margin-top: 0.75rem;
+  width: 300px;
+  padding: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.user-info-card {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem;
+  background-color: #ffffff;
+  border-radius: 0.75rem;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.user-avatar-large {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  color: white;
+  font-weight: 700;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Rotating Color Classes */
+.blue {
+  background-color: #2563eb;
+}
+.yellow {
+  background-color: #facc15;
+  color: black;
+}
+.pink {
+  background-color: #ec4899;
+}
+.green {
+  background-color: #22c55e;
+}
+
+/* Text Details */
+.user-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  word-break: break-word;
+  flex: 1;
+}
+
+.user-name {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #111827;
+}
+
+.user-title {
+  font-size: 0.95rem;
+  color: #6b7280;
+}
+
+.user-email {
+  font-size: 0.9rem;
+  color: #2563eb;
+  white-space: normal;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+/* Smooth Transitions */
+.fade-in {
+  transition: all 0.25s ease-out;
+}
+.fade-start {
+  opacity: 0;
+  transform: translateY(10px);
+}
+.fade-end {
+  opacity: 1;
+  transform: translateY(0);
+}
+.fade-out {
+  transition: all 0.2s ease-in;
+}
