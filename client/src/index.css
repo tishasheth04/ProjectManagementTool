@@ -1002,3 +1002,272 @@ html, body {
 .fade-out {
   transition: all 0.2s ease-in;
 }
+
+
+/* ---- General Styles ---- */
+.button {
+  padding: 0.5rem 0.75rem;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* ---- Title ---- */
+.title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+/* ---- Tabs ---- */
+.tabs-container {
+  width: 100%;
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+}
+
+.tab-list {
+  display: flex;
+  gap: 1.5rem;
+  padding: 0.25rem;
+  border-radius: 0.75rem;
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 500;
+  background-color: white;
+  outline: none;
+  cursor: pointer;
+  color: #374151; /* gray-800 */
+}
+
+.tab:hover {
+  color: #1e40af; /* blue-800 */
+}
+
+.tab.selected {
+  color: #1d4ed8; /* blue-700 */
+  border-bottom: 2px solid #2563eb; /* blue-600 */
+}
+
+/* ---- TaskTitle ---- */
+.task-title-container {
+  width: 100%;
+  height: 2.5rem;
+  padding: 0 0.5rem;
+  border-radius: 0.25rem;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.task-title-left {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.task-title-dot {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 9999px;
+}
+
+.task-title-text {
+  font-size: 0.875rem;
+  color: #4b5563; /* gray-600 */
+}
+
+.task-title-button {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .task-title-container {
+    height: 3rem;
+    padding: 0 1rem;
+  }
+  .task-title-text {
+    font-size: 1rem;
+  }
+  .task-title-button {
+    display: block;
+  }
+}
+
+//* ---- Base Resets ---- */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* ---- Loader ---- */
+.dots-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  padding: 1rem;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #2563eb;
+  animation: bounce 0.6s infinite alternate;
+}
+
+.dot:nth-child(2) {
+  animation-delay: 0.1s;
+}
+.dot:nth-child(3) {
+  animation-delay: 0.2s;
+}
+.dot:nth-child(4) {
+  animation-delay: 0.3s;
+}
+.dot:nth-child(5) {
+  animation-delay: 0.4s;
+}
+
+@keyframes bounce {
+  to {
+    transform: translateY(-10px);
+    opacity: 0.6;
+  }
+}
+
+/* ---- Title ---- */
+.title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+/* ---- Page Header ---- */
+.tasks-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+/* ---- Button ---- */
+.btn-create-task {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background-color: #2563eb; /* blue-600 */
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 0.85rem;
+  height: 36px;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.btn-create-task svg {
+  font-size: 1rem;
+}
+
+/* ---- Tabs ---- */
+.tabs-container {
+  width: 100%;
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+}
+
+.tab-list {
+  display: flex;
+  gap: 1.5rem;
+  padding: 0.25rem;
+  border-radius: 0.75rem;
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 500;
+  background-color: white;
+  outline: none;
+  cursor: pointer;
+  color: #374151;
+}
+
+.tab:hover {
+  color: #1e40af;
+}
+
+.tab.selected {
+  color: #1d4ed8;
+  border-bottom: 2px solid #2563eb;
+}
+
+/* ---- Task Title Boxes ---- */
+.task-titles-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 0;
+}
+
+.task-title-container {
+  width: 100%;
+  height: 2.5rem;
+  padding: 0 0.5rem;
+  border-radius: 0.25rem;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.task-title-left {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.task-title-dot {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 9999px;
+}
+
+.task-title-text {
+  font-size: 0.875rem;
+  color: #4b5563;
+}
+
+.task-title-button {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .task-title-container {
+    height: 3rem;
+    padding: 0 1rem;
+  }
+
+  .task-title-text {
+    font-size: 1rem;
+  }
+
+  .task-title-button {
+    display: block;
+  }
+}
