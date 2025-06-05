@@ -3,7 +3,8 @@ import React, { Fragment } from "react";
 import { getInitials } from "../utils";
 
 // Helper function to assign color
-const avatarColors = ["blue", "yellow", "pink", "green"];
+const avatarColors = ["bg-blue", "bg-yellow", "bg-pink", "bg-green"];
+
 
 const UserInfo = ({ user, index = 0 }) => {
   const color = avatarColors[index % avatarColors.length];

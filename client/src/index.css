@@ -1271,3 +1271,291 @@ body {
     display: block;
   }
 }
+
+
+
+/* Layout containers */
+.tasks-container {
+  width: 100%;
+}
+
+.tasks-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.create-task-button {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  gap: 0.25rem;
+  background-color: #2563eb; /* Blue */
+  color: white;
+  border-radius: 6px;
+  padding: 8px 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.icon-md {
+  font-size: 1.25rem;
+}
+
+/* Task Titles */
+.task-type-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 0;
+}
+
+/* Grid */
+.board-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
+  padding: 1rem 0;
+}
+
+/* Task Card */
+.task-card {
+  background: white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  padding: 1rem;
+  border-radius: 6px;
+}
+
+.task-card-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.priority {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.priority-icon {
+  font-size: 1.25rem;
+}
+
+.priority-label {
+  text-transform: uppercase;
+}
+
+/* Task Main Info */
+.task-main {
+  margin-top: 0.5rem;
+}
+
+.task-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: bold;
+}
+
+.stage-indicator {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+}
+
+/* Example stage colors */
+.todo {
+  background-color: #2563eb;
+}
+
+.in-progress {
+  background-color: #ca8a04;
+}
+
+.completed {
+  background-color: #16a34a;
+}
+
+.task-date {
+  font-size: 0.875rem;
+  color: gray;
+}
+
+.task-info-divider {
+  border-top: 1px solid #e5e7eb;
+  margin: 0.5rem 0;
+}
+
+/* Info Row */
+.task-info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.task-icons {
+  display: flex;
+  gap: 0.75rem;
+  color: gray;
+  font-size: 0.875rem;
+}
+
+.icon-text {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+/* Avatars */
+.task-users {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.user-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  margin-left: -8px;
+}
+
+/* Subtasks */
+.subtask-section {
+  border-top: 1px solid #e5e7eb;
+  padding-top: 1rem;
+  font-size: 0.875rem;
+}
+
+.subtask-meta {
+  padding-top: 0.5rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.subtask-tag {
+  background-color: rgba(59, 130, 246, 0.1);
+  padding: 4px 12px;
+  border-radius: 9999px;
+  color: #2563eb;
+  font-weight: 500;
+}
+
+.no-subtask {
+  color: gray;
+}
+
+/* Add subtask */
+.add-subtask-button-wrapper {
+  padding-top: 0.5rem;
+}
+
+.add-subtask-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: gray;
+  font-weight: 600;
+  width: 100%;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.add-subtask-button:disabled {
+  color: #ccc;
+  cursor: not-allowed;
+}
+.board-columns {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.5rem;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.board-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+/* Priority Text Colors */
+.text-red-600 {
+  color: #dc2626;
+}
+
+.text-yellow-600 {
+  color: #ca8a04;
+}
+
+.text-blue-600 {
+  color: #2563eb;
+}
+
+/* Avatar Background Colors */
+.bg-blue-600 {
+  background-color: #2563eb;
+}
+
+.bg-yellow-600 {
+  background-color: #ca8a04;
+}
+
+.bg-red-600 {
+  background-color: #dc2626;
+}
+
+.bg-green-600 {
+  background-color: #16a34a;
+}
+
+/* Avatar Background Colors (for UserInfo) */
+.blue {
+  background-color: #3b82f6;
+}
+
+.yellow {
+  background-color: #facc15;
+}
+
+.pink {
+  background-color: #ec4899;
+}
+
+.green {
+  background-color: #22c55e;
+}
+.user-avatar-mini {
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 9999px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.user-avatar-large {
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 9999px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
