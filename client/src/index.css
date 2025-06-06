@@ -1559,3 +1559,419 @@ body {
   font-size: 1.25rem;
   font-weight: 600;
 }
+.tasks_container {
+  width: 100%;
+}
+
+.tasks_header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.create_task_btn {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 0.25rem;
+  align-items: center;
+  background-color: #2563eb;
+  color: white;
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+.icon_lg {
+  font-size: 1.125rem;
+}
+
+.loading_wrapper {
+  padding-top: 2.5rem;
+}
+
+.task_tabs_group {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  column-gap: 3rem;
+  padding: 1rem 0;
+}
+
+.table_wrapper {
+  width: 100%;
+}
+.menu_wrapper {
+  position: relative;
+  display: inline-block;
+  text-align: left;
+}
+
+.menu_button {
+  display: inline-flex;
+  justify-content: center;
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  color: #4b5563;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.menu_items {
+  position: absolute;
+  right: 0;
+  margin-top: 0.5rem;
+  width: 14rem;
+  background: white;
+  border-radius: 6px;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  z-index: 10;
+}
+
+.menu_group {
+  margin-bottom: 0.5rem;
+}
+
+.menu_item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  padding: 0.5rem;
+  width: 100%;
+  border-radius: 6px;
+  color: #1f2937;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+}
+
+.menu_item_active {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.delete_item {
+  color: #991b1b;
+}
+
+.delete_icon {
+  color: #f87171;
+}
+
+.menu_icon {
+  margin-right: 0.5rem;
+  height: 1.25rem;
+  width: 1.25rem;
+}
+
+/* Optional transitions */
+.fade_enter {
+  transition: all 0.1s ease-out;
+}
+.fade_enter_from {
+  opacity: 0;
+  transform: scale(0.95);
+}
+.fade_enter_to {
+  opacity: 1;
+  transform: scale(1);
+}
+.fade_leave {
+  transition: all 0.075s ease-in;
+}
+.fade_leave_from {
+  opacity: 1;
+  transform: scale(1);
+}
+.fade_leave_to {
+  opacity: 0;
+  transform: scale(0.95);
+}
+.task-list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem 0;
+}
+
+.task-list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.task-list-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.task-title-text {
+  font-weight: bold;
+}
+
+.task-list-right {
+  display: flex;
+  gap: 0.5rem;
+}
+
+
+/*USERS CSS - TEAM ESSENTIALLY*/
+
+.user-container {
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+.user-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.btn_add_user {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 0.25rem;
+  align-items: center;
+  background-color: #2563eb;
+  color: white;
+  border-radius: 6px;
+  padding: 0.625rem 1rem;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+.icon_lg {
+  font-size: 1.125rem;
+}
+
+.user-table-wrapper {
+  background-color: white;
+  padding: 1rem;
+  border-radius: 6px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.user-table-scroll {
+  overflow-x: auto;
+}
+
+.user-table {
+  width: 100%;
+  margin-bottom: 1.25rem;
+  border-collapse: collapse;
+}
+
+.user-table-header th {
+  text-align: left;
+  padding: 0.5rem;
+  border-bottom: 1px solid #d1d5db;
+  color: #000;
+}
+
+.user-table-row td {
+  padding: 0.5rem;
+  border-bottom: 1px solid #e5e7eb;
+  color: #4b5563;
+}
+
+.user-table-row:hover {
+  background-color: rgba(156, 163, 175, 0.1);
+}
+
+.user-name-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.user-avatar-circle {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 9999px;
+  background-color: #1d4ed8;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.875rem;
+}
+
+.user-avatar-text {
+  font-size: 0.75rem;
+  text-align: center;
+}
+
+.status-active {
+  background-color: #bfdbfe;
+  padding: 0.25rem 1rem;
+  border-radius: 9999px;
+}
+
+.status-disabled {
+  background-color: #fef3c7;
+  padding: 0.25rem 1rem;
+  border-radius: 9999px;
+}
+
+.user-action-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+}
+
+
+/*TRASHHHHHH*/
+.trash-container {
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+.trash-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.trash-header-buttons {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.btn-restore-all,
+.btn-delete-all {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 0.25rem;
+  align-items: center;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  cursor: pointer;
+  padding: 0.625rem 1rem;
+}
+
+.btn-restore-all {
+  color: black;
+  background-color: #f3f4f6;
+}
+
+.btn-delete-all {
+  color: #dc2626;
+  background-color: #fee2e2;
+}
+
+.icon_lg {
+  font-size: 1.125rem;
+}
+
+.trash-table-wrapper {
+  background-color: white;
+  padding: 1rem 1.5rem;
+  border-radius: 6px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.trash-table-scroll {
+  overflow-x: auto;
+}
+
+.trash-table {
+  width: 100%;
+  margin-bottom: 1.25rem;
+  border-collapse: collapse;
+}
+
+.table-header th {
+  text-align: left;
+  padding: 0.5rem;
+  border-bottom: 1px solid #d1d5db;
+  color: black;
+}
+
+.table-row td {
+  padding: 0.5rem;
+  border-bottom: 1px solid #e5e7eb;
+  color: #4b5563;
+}
+
+.table-row:hover {
+  background-color: rgba(156, 163, 175, 0.1);
+}
+
+.task-title-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.task-title-text {
+  font-size: 1rem;
+  font-weight: 500;
+  color: black;
+}
+
+.priority-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.priority-icon {
+  font-size: 1.25rem;
+}
+
+.stage-indicator {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 9999px;
+}
+
+/* Example color classes */
+.bg_blue_600 {
+  background-color: #2563eb;
+}
+
+.bg_yellow_600 {
+  background-color: #ca8a04;
+}
+
+.bg_green_600 {
+  background-color: #16a34a;
+}
+
+.date-text {
+  font-size: 0.875rem;
+  color: #4b5563;
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+.icon-delete {
+  font-size: 1.25rem;
+  color: #dc2626;
+}
+
+.icon-restore {
+  font-size: 1.25rem;
+  color: #6b7280;
+}
