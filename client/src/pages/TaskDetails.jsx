@@ -1,17 +1,9 @@
+// Clean version of TaskDetail.jsx with only allowed imports and no Tailwind/clsx
 import moment from "moment";
 import React, { useState } from "react";
+import { useParams } from "react-router-dom";
 import { toast } from "sonner";
-import { tasks } from "../assets/data";
-import Tabs from "../components/Tabs";
-import "../index.css";
-
-import {
-  FaBug,
-  FaSpinner,
-  FaTasks,
-  FaThumbsUp,
-  FaUser,
-} from "react-icons/fa";
+import { FaBug, FaSpinner, FaTasks, FaThumbsUp, FaUser } from "react-icons/fa";
 import { GrInProgress } from "react-icons/gr";
 import {
   MdKeyboardArrowDown,
@@ -22,11 +14,36 @@ import {
   MdTaskAlt,
 } from "react-icons/md";
 import { RxActivityLog } from "react-icons/rx";
+import Button from "../components/Button";
+import Loader from "../components/Loader"; // ✅ You said it's `Loader`, not `Loading`
+import Tabs from "../components/Tabs";
+
+import TaskColor from "../components/task/TaskColor";
+
+import {
+  useChangeSubTaskStatusMutation,
+  useGetSingleTaskQuery,
+  usePostTaskActivityMutation,
+} from "../redux/slices/api/taskApiSlice";
+import {
+  PRIOTITYSTYELS,
+  TASK_TYPE,
+  getCompletedSubTasks,
+  getInitials,
+} from "../utils";
+import "../index.css";
 
 const ICONS = {
-  high: <MdKeyboardDoubleArrowUp />,
-  medium: <MdKeyboardArrowUp />,
-  low: <MdKeyboardArrowDown />,
+  high: <MdKeyboardDoubleArrowUp />, medium: <MdKeyboardArrowUp />, low: <MdKeyboardArrowDown />,
+};
+
+const TASKTYPEICON = {
+  commented: <div className="activity-icon commented"><MdOutlineMessage /></div>,
+  started: <div className="activity-icon started"><FaThumbsUp size={20} /></div>,
+  assigned: <div className="activity-icon assigned"><FaUser size={14} /></div>,
+  bug: <div className="activity-icon bug"><FaBug size={24} /></div>,
+  completed: <div className="activity-icon completed"><MdOutlineDoneAll size={24} /></div>,
+  "in progress": <div className="activity-icon in-progress"><GrInProgress size={16} /></div>,
 };
 
 const TABS = [
@@ -34,67 +51,56 @@ const TABS = [
   { title: "Activities/Timeline", icon: <RxActivityLog /> },
 ];
 
-const TASKTYPEICON = {
-  commented: <div className="activity-icon commented"><MdOutlineMessage /></div>,
-  started: <div className="activity-icon started"><FaThumbsUp size={20} /></div>,
-  assigned: <div className="activity-icon assigned"><FaUser size={14} /></div>,
-  bug: <div className="text-red-600"><FaBug size={24} /></div>,
-  completed: <div className="activity-icon completed"><MdOutlineDoneAll size={24} /></div>,
-  "in progress": <div className="activity-icon in-progress"><GrInProgress size={16} /></div>,
-};
-
 const Activities = ({ activity, id, refetch }) => {
   const [selected, setSelected] = useState("Started");
   const [text, setText] = useState("");
-  const handleSubmit = () => toast.success("Activity submitted (mock)");
+  const [postActivity, { isLoading }] = usePostTaskActivityMutation();
 
-  const Card = ({ item }) => (
-    <div className="activity-card">
-      <div className="flex flex-col items-center">
-        <div className="w-10 h-10 flex items-center justify-center">{TASKTYPEICON[item?.type]}</div>
-        <div className="activity-line"></div>
-      </div>
-      <div>
-        <p className="font-semibold">{item?.by?.name || item?.by}</p>
-        <div className="text-gray-500">
-          <span className="capitalize">{item?.type}</span>
-          <span className="text-sm"> {moment(item?.date).fromNow()}</span>
-        </div>
-        <div className="text-gray-700">{item?.activity}</div>
-      </div>
-    </div>
-  );
+  const handleSubmit = async () => {
+    try {
+      const res = await postActivity({
+        data: { type: selected.toLowerCase(), activity: text },
+        id,
+      }).unwrap();
+      toast.success(res?.message);
+      setText("");
+      refetch();
+    } catch (err) {
+      toast.error(err?.data?.message || err.error);
+    }
+  };
 
   return (
     <div className="tabs-container">
       <div>
         <h4>Activities</h4>
         {activity?.map((item, index) => (
-          <Card key={item._id || index} item={item} />
+          <div className="activity-card" key={index}>
+            <div className="activity-card-icon">{TASKTYPEICON[item?.type]}</div>
+            <div>
+              <p className="font-semibold">{item?.by?.name}</p>
+              <p className="text-gray">{item?.type} — {moment(item?.date).fromNow()}</p>
+              <p>{item?.activity}</p>
+            </div>
+          </div>
         ))}
       </div>
-
       <div>
         <h4>Add Activity</h4>
-        <div>
-          {["Started", "Completed", "In Progress", "Commented", "Bug", "Assigned"].map((item) => (
-            <label key={item}>
-              <input
-                type="checkbox"
-                checked={selected === item}
-                onChange={() => setSelected(item)}
-              />
-              {item}
+        <div className="activity-form">
+          {["Started", "Completed", "In Progress", "Commented", "Bug", "Assigned"].map((type) => (
+            <label key={type}>
+              <input type="radio" name="act-type" checked={selected === type} onChange={() => setSelected(type)} /> {type}
             </label>
           ))}
           <textarea
-            rows={5}
+            rows="4"
             value={text}
             onChange={(e) => setText(e.target.value)}
+            placeholder="Type..."
             className="activity-input-box"
-            placeholder="Type ..."
           ></textarea>
-          <button type="button" onClick={handleSubmit} className="button-submit">Submit</button>
+          {isLoading ? <Loader /> : <Button onClick={handleSubmit} label="Submit" className="button-submit" />}
         </div>
       </div>
     </div>
@@ -102,8 +108,32 @@ const Activities = ({ activity, id, refetch }) => {
 };
 
 const TaskDetail = () => {
+  const { id } = useParams();
+
+  if (!id) return <Loader />;
+
+  const { data, isLoading, refetch } = useGetSingleTaskQuery(id, {
+    skip: !id,
+  });
+
+  const [subTaskAction, { isLoading: isSubmitting }] = useChangeSubTaskStatusMutation();
   const [selected, setSelected] = useState(0);
-  const task = tasks.find(t => t._id === "65c5f12ab5204a81bde866a9"); // TEMPORARY HARDCODED TASK ID
+
+  const task = data?.task || {};
+
+  const handleSubmitAction = async ({ id, subId, status }) => {
+    try {
+      const res = await subTaskAction({ id, subId, status: !status }).unwrap();
+      toast.success(res?.message);
+      refetch();
+    } catch (err) {
+      toast.error(err?.data?.message || err.error);
+    }
+  };
+
+  if (isLoading) return <Loader />;
+
+  const percentage = task?.subTasks?.length ? (getCompletedSubTasks(task.subTasks) / task.subTasks.length) * 100 : 0;
 
   return (
     <div className="tabs-container">
@@ -112,62 +142,64 @@ const TaskDetail = () => {
         {selected === 0 ? (
           <div className="task-detail-box">
             <div className="task-detail-section">
-              <div className={`priority-${task?.priority}`}>
-                <span>{ICONS[task?.priority]}</span>
-                <span>{task?.priority} Priority</span>
+              <div className={`priority-box priority-${task?.priority}`}>{ICONS[task?.priority]} {task?.priority} Priority</div>
+              <div className="task-stage"><TaskColor className={TASK_TYPE[task?.stage]} /> {task?.stage}</div>
+              <p>Created: {new Date(task?.date).toDateString()}</p>
+              <p>Sub-Tasks: {task?.subTasks?.length}</p>
+              <div className="task-team">
+                {task?.team?.map((m, i) => (
+                  <div key={i} className="task-member">
+                    <div className="avatar">{getInitials(m?.name)}</div>
+                    <div>
+                      <p>{m?.name}</p>
+                      <p className="text-gray">{m?.title}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
-              <div className="task-stage">
-                <span>{task?.stage}</span>
-              </div>
-              <p>Created At: {new Date(task?.date).toDateString()}</p>
-              <div>
-                <span>Sub-Tasks: {task?.subTasks?.length}</span>
-              </div>
-              <div>
-                <p><strong>TASK TEAM</strong></p>
-                <div style={{ display: 'flex', gap: '1rem' }}>
-                  {task?.team?.map((m, i) => (
-                    <div key={i}>
-                      <div className="avatar">{m?.name?.charAt(0)}</div>
+            </div>
+            <div className="task-detail-section">
+              {task?.description && <><p><strong>Description</strong></p><p>{task.description}</p></>}
+              {task?.subTasks?.length > 0 && (
+                <div>
+                  <p><strong>Sub-Tasks ({percentage.toFixed(2)}%)</strong></p>
+                  {task.subTasks.map((el, i) => (
+                    <div key={i} className="subtask">
+                      <MdTaskAlt />
                       <div>
-                        <p>{m?.name}</p>
-                        <span>{m?.title}</span>
+                        <p>{el?.title}</p>
+                        <small>{new Date(el?.date).toDateString()}</small>
+                        <span className={el?.isCompleted ? "done" : "inprogress"}>{el?.isCompleted ? "Done" : "In Progress"}</span>
+                        <button
+                          className="subtask-btn"
+                          onClick={() => handleSubmitAction({ id: task?._id, subId: el?._id, status: el?.isCompleted })}
+                          disabled={isSubmitting}
+                        >
+                          {isSubmitting ? <FaSpinner className="spin" /> : el?.isCompleted ? "Mark as Undone" : "Mark as Done"}
+                        </button>
                       </div>
                     </div>
                   ))}
                 </div>
-              </div>
-            </div>
-            <div className="task-detail-section">
-              {task?.description && (
-                <div>
-                  <p><strong>TASK DESCRIPTION</strong></p>
-                  <div>{task?.description}</div>
+              )}
+              {task?.assets?.length > 0 && (
+                <div className="assets-section">
+                  <p><strong>Assets</strong></p>
+                  <div className="asset-grid">
+                    {task.assets.map((el, i) => <img key={i} src={el} alt={i} className="asset-img" />)}
+                  </div>
                 </div>
               )}
-              <div>
-                <p><strong>SUB-TASKS</strong></p>
-                {task?.subTasks?.map((el, i) => (
-                  <div key={i}>
-                    <MdTaskAlt />
-                    <span>{new Date(el?.date).toDateString()}</span>
-                    <span>{el?.tag}</span>
-                    <p>{el?.title}</p>
-                  </div>
-                ))}
-              </div>
               {task?.links?.length > 0 && (
-                <div>
-                  <p><strong>SUPPORT LINKS</strong></p>
-                  {task?.links?.map((el, i) => (
-                    <a key={i} href={el} target="_blank" rel="noreferrer">{el}</a>
-                  ))}
+                <div className="link-section">
+                  <p><strong>Links</strong></p>
+                  {task.links.map((el, i) => <a key={i} href={el} target="_blank" rel="noreferrer">{el}</a>)}
                 </div>
               )}
             </div>
           </div>
         ) : (
-          <Activities activity={task?.activities} refetch={() => {}} id={task?._id} />
+          <Activities activity={task.activities} refetch={refetch} id={id} />
         )}
       </Tabs>
     </div>

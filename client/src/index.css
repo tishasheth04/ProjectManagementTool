@@ -2145,3 +2145,221 @@ body {
 .asset-img:hover {
   transform: scale(1.03);
 }
+
+
+
+
+.tabs-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 2rem;
+  background: white;
+  border-radius: 0.5rem;
+}
+
+.task-detail-box {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.task-detail-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.priority-box {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  font-weight: bold;
+}
+
+.priority-high {
+  background: #fecaca;
+  color: #b91c1c;
+}
+
+.priority-medium {
+  background: #fef08a;
+  color: #ca8a04;
+}
+
+.priority-low {
+  background: #bfdbfe;
+  color: #1d4ed8;
+}
+
+.task-stage {
+  font-weight: bold;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.task-team {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.task-member {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  background: #2563eb;
+  border-radius: 9999px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.text-gray {
+  color: #6b7280;
+}
+
+.activity-card {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.activity-card-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  height: 40px;
+}
+
+.activity-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.activity-input-box {
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  outline: none;
+  resize: vertical;
+}
+
+.button-submit {
+  background-color: #2563eb;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.subtask {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.subtask > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.done {
+  background: #d1fae5;
+  color: #065f46;
+  padding: 0.25rem 0.5rem;
+  border-radius: 9999px;
+}
+
+.inprogress {
+  background: #fef3c7;
+  color: #92400e;
+  padding: 0.25rem 0.5rem;
+  border-radius: 9999px;
+}
+
+.subtask-btn {
+  padding: 0.25rem 0.75rem;
+  background: #e5e7eb;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+.subtask-btn:hover {
+  background-color: #c7d2fe;
+}
+
+.spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.assets-section {
+  margin-top: 2rem;
+}
+
+.asset-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 1rem;
+}
+
+.asset-img {
+  width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+  transition: transform 0.3s ease;
+}
+
+.asset-img:hover {
+  transform: scale(1.1);
+}
+
+.link-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+
+.task-color {
+  width: 16px;
+  height: 16px;
+  border-radius: 9999px;
+  display: inline-block;
+}
+
+/* Optional predefined styles if you use them with TASK_TYPE */
+.status-todo {
+  background-color: #facc15; /* Yellow */
+}
+
+.status-doing {
+  background-color: #60a5fa; /* Blue */
+}
+
+.status-done {
+  background-color: #34d399; /* Green */
+}
