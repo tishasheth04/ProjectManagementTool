@@ -1,4 +1,3 @@
-// ✅ TaskDialog.jsx (No changes from last update)
 import React, { Fragment, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AiTwotoneFolderOpen } from "react-icons/ai";
@@ -9,7 +8,7 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import { Menu, Transition } from "@headlessui/react";
 import AddTask from "./AddTask";
 import AddSubTask from "./AddSubTask";
-import ConfirmatioDialog from "../Dialogs";
+import ConfirmatioDialog from "../ConfirmationDialog";
 
 const TaskDialog = ({ task }) => {
   const [open, setOpen] = useState(false);
@@ -104,13 +103,13 @@ const TaskDialog = ({ task }) => {
         key={task?._id}
       />
 
-      <AddSubTask open={open} setOpen={setOpen} />
+      <AddSubTask open={open} setOpen={setOpen} id={task?._id} />
 
-      {/*<ConfirmatioDialog
+      <ConfirmatioDialog
         open={openDialog}
         setOpen={setOpenDialog}
         onClick={deleteHandler}
-      />*/}
+      />
     </>
   );
 };

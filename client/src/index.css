@@ -2712,3 +2712,501 @@ body {
 .submit-task-btn:hover {
   background-color: #2563eb;
 }
+
+
+
+/* Modal Styles */
+.modal-wrapper {
+  position: relative;
+  z-index: 50;
+}
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  transition: opacity 300ms ease-out;
+}
+
+.modal-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  overflow-y: auto;
+}
+
+.modal-inner-container {
+  display: flex;
+  min-height: 100%;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  text-align: center;
+}
+
+.modal-panel {
+  position: relative;
+  width: 100%;
+  max-width: 32rem;
+  overflow: hidden;
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  padding: 1.5rem;
+  transition: all 300ms ease-out;
+}
+
+/* Form Styles */
+.dialog-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.dialog-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+.task-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-row {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+}
+
+.form-row > * {
+  flex: 1;
+}
+
+.input-full {
+  width: 100%;
+}
+
+/* Select List Styles */
+.select-list-container {
+  width: 100%;
+}
+
+.select-list-label {
+  color: #64748b;
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.select-list-wrapper {
+  position: relative;
+  margin-top: 0.25rem;
+}
+
+.select-list-button {
+  position: relative;
+  width: 100%;
+  background: white;
+  border: 1px solid #d1d5db;
+  padding: 0.625rem 0.75rem;
+  padding-right: 2.5rem;
+  font-size: 0.875rem;
+  border-radius: 0.375rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: default;
+}
+
+.select-list-selected {
+  flex: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-align: left;
+}
+
+.select-list-icon {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #9ca3af;
+}
+
+.select-list-options {
+  position: absolute;
+  margin-top: 0.25rem;
+  width: 100%;
+  max-height: 15rem;
+  overflow-y: auto;
+  background: white;
+  border-radius: 0.375rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  z-index: 50;
+  padding: 0.5rem 0;
+  font-size: 0.875rem;
+}
+
+.select-list-option {
+  position: relative;
+  cursor: default;
+  padding: 0.5rem 2.5rem 0.5rem 2.5rem;
+  color: #1f2937;
+}
+
+.select-list-option-active {
+  background-color: #fef3c7;
+  color: #92400e;
+}
+
+.select-list-option-text {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.select-list-option-selected {
+  font-weight: 600;
+}
+
+.select-list-option-check {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #d97706;
+}
+
+/* File Upload Styles */
+.file-upload-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.file-upload-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #64748b;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.file-upload-input {
+  display: none;
+}
+
+.file-upload-icon {
+  font-size: 1.25rem;
+}
+
+/* Textarea Styles */
+.textarea-container {
+  width: 100%;
+}
+
+.textarea-container label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #374151;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.hint-text {
+  color: #6b7280;
+  font-size: 0.75rem;
+}
+
+.task-textarea {
+  width: 100%;
+  background: transparent;
+  padding: 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  font-size: 1rem;
+  color: #111827;
+  outline: none;
+}
+
+.task-textarea:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Button Styles */
+.submit-task-btn {
+  margin-top: 1.5rem;
+  padding: 0.75rem 1.5rem;
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 0.375rem;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  font-size: 1rem;
+}
+
+.submit-task-btn:hover {
+  background-color: #2563eb;
+}
+
+.loading-container {
+  padding: 1rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Transition Classes */
+.select-list-transition-leave {
+  transition: opacity 100ms ease-in;
+}
+
+.select-list-transition-leave-from {
+  opacity: 1;
+}
+
+.select-list-transition-leave-to {
+  opacity: 0;
+}
+
+/* Confirmation Dialog Styles */
+.confirmation-dialog-content {
+  padding: 1rem 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.confirmation-icon {
+  padding: 0.75rem;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.confirmation-icon-restore {
+  color: #92400e;
+  background-color: #fef3c7;
+}
+
+.confirmation-icon-delete {
+  color: #dc2626;
+  background-color: #fee2e2;
+}
+
+.confirmation-message {
+  text-align: center;
+  color: #6b7280;
+  font-size: 1rem;
+}
+
+.confirmation-buttons {
+  background-color: #f9fafb;
+  padding: 0.75rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+}
+
+.confirmation-action-button {
+  padding: 0.5rem 2rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: white;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+.confirmation-button-restore {
+  background-color: #d97706;
+}
+
+.confirmation-button-restore:hover {
+  background-color: #b45309;
+}
+
+.confirmation-button-delete {
+  background-color: #dc2626;
+}
+
+.confirmation-button-delete:hover {
+  background-color: #b91c1c;
+}
+
+.confirmation-cancel-button {
+  padding: 0.5rem 2rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #111827;
+  background-color: white;
+  border: 1px solid #d1d5db;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+.confirmation-cancel-button:hover {
+  background-color: #f3f4f6;
+}
+
+/* Modal Wrapper Styles */
+.modal-wrapper {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+}
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+}
+
+.modal-container {
+  position: fixed;
+  inset: 0;
+  overflow-y: auto;
+  z-index: 1001;
+}
+
+.modal-inner-container {
+  display: flex;
+  min-height: 100%;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  text-align: center;
+}
+
+.modal-panel {
+  position: relative;
+  width: 100%;
+  max-width: 32rem;
+  margin: 1rem;
+  background: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 
+              0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+/* Transitions */
+.modal-transition-enter {
+  transition: opacity 0.3s ease-out;
+}
+
+.modal-transition-enter-from {
+  opacity: 0;
+}
+
+.modal-transition-enter-to {
+  opacity: 1;
+}
+
+.modal-transition-leave {
+  transition: opacity 0.2s ease-in;
+}
+
+.modal-transition-leave-from {
+  opacity: 1;
+}
+
+.modal-transition-leave-to {
+  opacity: 0;
+}
+
+.modal-transition-slide-enter-from {
+  opacity: 0;
+  transform: translateY(16px) scale(0.95);
+}
+
+.modal-transition-slide-enter-to {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.modal-transition-slide-leave-from {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.modal-transition-slide-leave-to {
+  opacity: 0;
+  transform: translateY(16px) scale(0.95);
+}
+
+/* Task Card Styles */
+.task-card {
+  position: relative;
+  /* other existing styles */
+}
+
+.add-subtask-container {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.add-subtask-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.add-subtask-btn:hover {
+  background-color: #2563eb;
+}
+
+.add-subtask-btn.disabled {
+  background-color: #9ca3af;
+  cursor: not-allowed;
+}
+
+.add-icon {
+  font-size: 1rem;
+}
+
+.task-card {
+  position: relative;
+}
+
+.task-card-menu-wrapper {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  z-index: 10;
+}

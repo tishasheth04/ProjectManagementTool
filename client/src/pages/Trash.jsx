@@ -129,9 +129,9 @@ const Trash = () => {
         </div>
       </div>
 
-      {/* <AddUser open={open} setOpen={setOpen} /> */}
+      <AddUser open={open} setOpen={setOpen} />
 
-      {/* <ConfirmatioDialog open={openDialog} setOpen={setOpenDialog} msg={msg} setMsg={setMsg} type={type} setType={setType} onClick={() => deleteRestoreHandler()} /> */}
+      <ConfirmatioDialog open={openDialog} setOpen={setOpenDialog} msg={msg} setMsg={setMsg} type={type} setType={setType} onClick={() => deleteRestoreHandler()} />
     </div>
   );
 };

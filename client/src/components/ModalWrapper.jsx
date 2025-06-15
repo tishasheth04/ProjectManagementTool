@@ -8,6 +8,7 @@ const ModalWrapper = ({ open, setOpen, children }) => {
         as="div"
         className="modal-wrapper"
         onClose={() => setOpen(false)}
+        static
       >
         <Transition.Child
           as={Fragment}

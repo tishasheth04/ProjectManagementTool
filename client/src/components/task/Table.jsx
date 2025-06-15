@@ -10,7 +10,7 @@ import { FaList } from "react-icons/fa";
 import { BGS, PRIOTITYSTYELS, TASK_TYPE, formatDate } from "../../utils";
 import UserInfo from "../UserInfo";
 import Button from "../Button";
-/*import ConfirmatioDialog from "../Dialogs";*/
+import ConfirmatioDialog from "../ConfirmationDialog";
 
 const ICONS = {
   high: <MdKeyboardDoubleArrowUp />,
@@ -79,7 +79,7 @@ const Table = ({ tasks }) => {
         ))}
       </div>
 
-      {/* <ConfirmatioDialog open={openDialog} setOpen={setOpenDialog} onClick={deleteHandler} /> */}
+      <ConfirmatioDialog open={openDialog} setOpen={setOpenDialog} onClick={deleteHandler} />
     </>
   );
 };

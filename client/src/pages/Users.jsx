@@ -103,7 +103,7 @@ const Users = () => {
         </div>
       </div>
 
-      {/*
+      
       <AddUser
         open={open}
         setOpen={setOpen}
@@ -122,7 +122,7 @@ const Users = () => {
         setOpen={setOpenAction}
         onClick={userActionHandler}
       />
-      */}
+      
     </div>
   );
 };
