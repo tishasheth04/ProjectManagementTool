@@ -2363,3 +2363,352 @@ body {
 .status-done {
   background-color: #34d399; /* Green */
 }
+
+
+
+/** ADDED code*/
+.dialog-title {
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.5;
+  color: #111827;
+  margin-bottom: 1rem;
+}
+
+.task-form-group {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.input-full {
+  width: 100%;
+  border-radius: 4px;
+}
+
+.userlist-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.userlist-label {
+  color: #334155;
+}
+
+.listbox-container {
+  position: relative;
+  margin-top: 0.25rem;
+}
+
+.listbox-button {
+  width: 100%;
+  background: white;
+  border: 1px solid #d1d5db;
+  padding: 0.625rem 0.75rem;
+  padding-right: 2.5rem;
+  font-size: 0.875rem;
+  border-radius: 0.375rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.listbox-selected {
+  flex: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.listbox-icon {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.listbox-options {
+  position: absolute;
+  margin-top: 0.25rem;
+  width: 100%;
+  max-height: 15rem;
+  overflow-y: auto;
+  background: white;
+  border-radius: 0.375rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  z-index: 50;
+  padding: 0.5rem 0;
+  font-size: 0.875rem;
+}
+
+.listbox-option {
+  position: relative;
+  cursor: default;
+  padding: 0.5rem 2.5rem 0.5rem 2.5rem;
+  color: #1f2937;
+}
+
+.listbox-option.active {
+  background-color: #fde68a;
+  color: #78350f;
+}
+
+.option-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  overflow: hidden;
+}
+
+.option-item.selected {
+  font-weight: 600;
+}
+
+.user-avatar {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 9999px;
+  background-color: #7c3aed;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.625rem;
+}
+
+.avatar-initials {
+  text-align: center;
+}
+
+.selected-check {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #d97706;
+}
+.submit-task-btn {
+  margin-top: 1.5rem;
+  padding: 0.75rem 1.5rem;
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 0.375rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.submit-task-btn:hover {
+  background-color: #2563eb;
+}
+
+
+/*EXTAR*/
+/* Add these to your existing index.css */
+
+/* Modal styles */
+.fixed {
+  position: fixed;
+}
+.inset-0 {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+.bg-black\/30 {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.z-50 {
+  z-index: 50;
+}
+
+/* Form styles */
+.dialog-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Button styles */
+.create_task_btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: #3b82f6;
+  color: white;
+  border-radius: 0.375rem;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+}
+
+.create_task_btn:hover {
+  background-color: #2563eb;
+}
+
+.icon_lg {
+  font-size: 1.25rem;
+}
+
+/* Loading wrapper */
+.loading_wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Tasks container */
+.tasks_container {
+  padding: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.tasks_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.task_tabs_group {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.table_wrapper {
+  overflow-x: auto;
+}
+
+
+/* Modal Styles */
+.modal-wrapper {
+  position: relative;
+  z-index: 50;
+}
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  transition-property: opacity;
+}
+
+.modal-container {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  overflow-y: auto;
+}
+
+.modal-inner-container {
+  display: flex;
+  min-height: 100%;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  text-align: center;
+}
+
+.modal-panel {
+  position: relative;
+  width: 100%;
+  max-width: 32rem;
+  overflow: hidden;
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  padding: 1.5rem;
+  transition-property: all;
+}
+
+/* Transition Classes */
+.modal-transition-enter {
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+}
+
+.modal-transition-enter-from {
+  opacity: 0;
+}
+
+.modal-transition-enter-to {
+  opacity: 1;
+}
+
+.modal-transition-leave {
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 200ms;
+}
+
+.modal-transition-leave-from {
+  opacity: 1;
+}
+
+.modal-transition-leave-to {
+  opacity: 0;
+}
+
+.modal-transition-slide-enter-from {
+  opacity: 0;
+  transform: translateY(1rem) scale(0.95);
+}
+
+.modal-transition-slide-enter-to {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.modal-transition-slide-leave-from {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.modal-transition-slide-leave-to {
+  opacity: 0;
+  transform: translateY(1rem) scale(0.95);
+}
+
+/* Form Styles */
+.dialog-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.dialog-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+.task-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.submit-task-btn {
+  margin-top: 1rem;
+  padding: 0.75rem 1.5rem;
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 0.375rem;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+}
+
+.submit-task-btn:hover {
+  background-color: #2563eb;
+}

@@ -1,3 +1,4 @@
+// ✅ TaskDialog.jsx (No changes from last update)
 import React, { Fragment, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AiTwotoneFolderOpen } from "react-icons/ai";
@@ -100,7 +101,7 @@ const TaskDialog = ({ task }) => {
         open={openEdit}
         setOpen={setOpenEdit}
         task={task}
-        key={new Date().getTime()}
+        key={task?._id}
       />
 
       <AddSubTask open={open} setOpen={setOpen} />

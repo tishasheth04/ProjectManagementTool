@@ -19,18 +19,16 @@ const TABS = [
 ];
 
 const TASK_TYPE = {
-  todo: "bg_blue_600",
-  "in progress": "bg_yellow_600",
-  completed: "bg_green_600",
+  todo: "bg-blue-600",
+  "in progress": "bg-yellow-600",
+  completed: "bg-green-600",
 };
 
 const Tasks = () => {
   const params = useParams();
-
   const [selected, setSelected] = useState(0);
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
-
   const status = params?.status || "";
 
   return loading ? (
@@ -44,7 +42,10 @@ const Tasks = () => {
 
         {!status && (
           <Button
-            onClick={() => setOpen(true)}
+            onClick={() => {
+              console.log("Opening task modal");
+              setOpen(true);
+            }}
             label="Create Task"
             icon={<IoMdAdd className="icon_lg" />}
             className="create_task_btn"
