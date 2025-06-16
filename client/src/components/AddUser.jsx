@@ -1,25 +1,41 @@
-import React from 'react'
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { useForm } from 'react-hook-form';
+import ModalWrapper from './ModalWrapper'; // Adjust the path as needed
+import Textbox from './Textbox'; // Adjust the path as needed
+import Button from './Button'; // Adjust the path as needed
+import Loading from './Loader'; // Adjust the path as needed
+import { Dialog } from '@headlessui/react'; // Assuming you're using Headless UI
 
-const AddUser = ({open, setOpen, userData}) => {
-    let defaultValues = userDAta ?? {};
-    const {user} = useSelector((state) => state.auth);
+const AddUser = ({ open, setOpen, userData }) => {
+  let defaultValues = userData ?? {};
+  const { user } = useSelector((state) => state.auth);
 
-    const {
-        register,
-        handleSUbmit,
-        formState: {errors},
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ defaultValues });
 
-    } = useForm({defaultValues})
+  const isLoading = false; // Replace with real loading logic if needed
+  const isUpdating = false; // Replace with real updating logic if needed
+
+  const handleOnSubmit = (data) => {
+    console.log('Form submitted:', data);
+    // Add your submit logic here
+  };
+
   return (
-     <>
+    <>
       <ModalWrapper open={open} setOpen={setOpen}>
         <form onSubmit={handleSubmit(handleOnSubmit)} className=''>
           <Dialog.Title
             as='h2'
             className='text-base font-bold leading-6 text-gray-900 mb-4'
           >
-            {userData ? "UPDATE PROFILE" : "ADD NEW USER"}
+            {userData ? 'UPDATE PROFILE' : 'ADD NEW USER'}
           </Dialog.Title>
+
           <div className='mt-2 flex flex-col gap-6'>
             <Textbox
               placeholder='Full name'
@@ -27,32 +43,34 @@ const AddUser = ({open, setOpen, userData}) => {
               name='name'
               label='Full Name'
               className='w-full rounded'
-              register={register("name", {
-                required: "Full name is required!",
+              register={register('name', {
+                required: 'Full name is required!',
               })}
-              error={errors.name ? errors.name.message : ""}
+              error={errors.name ? errors.name.message : ''}
             />
+
             <Textbox
               placeholder='Title'
               type='text'
               name='title'
               label='Title'
               className='w-full rounded'
-              register={register("title", {
-                required: "Title is required!",
+              register={register('title', {
+                required: 'Title is required!',
               })}
-              error={errors.title ? errors.title.message : ""}
+              error={errors.title ? errors.title.message : ''}
             />
+
             <Textbox
               placeholder='Email Address'
               type='email'
               name='email'
               label='Email Address'
               className='w-full rounded'
-              register={register("email", {
-                required: "Email Address is required!",
+              register={register('email', {
+                required: 'Email Address is required!',
               })}
-              error={errors.email ? errors.email.message : ""}
+              error={errors.email ? errors.email.message : ''}
             />
 
             <Textbox
@@ -61,10 +79,10 @@ const AddUser = ({open, setOpen, userData}) => {
               name='role'
               label='Role'
               className='w-full rounded'
-              register={register("role", {
-                required: "User role is required!",
+              register={register('role', {
+                required: 'User role is required!',
               })}
-              error={errors.role ? errors.role.message : ""}
+              error={errors.role ? errors.role.message : ''}
             />
           </div>
 
@@ -76,7 +94,7 @@ const AddUser = ({open, setOpen, userData}) => {
             <div className='py-3 mt-4 sm:flex sm:flex-row-reverse'>
               <Button
                 type='submit'
-                className='bg-blue-600 px-8 text-sm font-semibold text-white hover:bg-blue-700  sm:w-auto'
+                className='bg-blue-600 px-8 text-sm font-semibold text-white hover:bg-blue-700 sm:w-auto'
                 label='Submit'
               />
 

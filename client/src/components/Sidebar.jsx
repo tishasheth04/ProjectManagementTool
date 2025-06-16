@@ -55,13 +55,6 @@ const Sidebar = () => {
           <NavLink el={link} key={link.label} />
         ))}
       </div>
-
-      <div className="sidebar-settings">
-        <button className="sidebar-settings-button">
-          <MdSettings className="sidebar-icon-small" />
-          <span>Settings</span>
-        </button>
-      </div>
     </div>
   );
 };

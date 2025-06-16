@@ -9,6 +9,11 @@ import {
 import { tasks } from "../assets/data";
 import Title from "../components/Title";
 import Button from "../components/Button";
+import AddUser from "../components/AddUser"; // Adjust the path if needed
+import ConfirmationDialog from "../components/ConfirmationDialog"; // Adjust the path if needed
+
+import { useSelector } from "react-redux"; // ✅ This line must be at the top
+
 import { PRIOTITYSTYELS, TASK_TYPE } from "../utils";
 
 const ICONS = {
@@ -131,7 +136,7 @@ const Trash = () => {
 
       <AddUser open={open} setOpen={setOpen} />
 
-      <ConfirmatioDialog open={openDialog} setOpen={setOpenDialog} msg={msg} setMsg={setMsg} type={type} setType={setType} onClick={() => deleteRestoreHandler()} />
+      <ConfirmationDialog open={openDialog} setOpen={setOpenDialog} msg={msg} setMsg={setMsg} type={type} setType={setType} onClick={() => deleteRestoreHandler()} />
     </div>
   );
 };
