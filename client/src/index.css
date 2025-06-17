@@ -3210,3 +3210,170 @@ body {
   right: 0.75rem;
   z-index: 10;
 }
+
+/*ADD SUBTASK FORM*/
+/* Use a modern sans-serif font */
+.subtask-form {
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  font-family: 'Segoe UI', 'Noto Sans', 'Helvetica Neue', sans-serif;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  min-width: 450px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.subtask-title {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #1f2937;
+  text-align: left; /* changed from center */
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 0.5rem;
+}
+
+.subtask-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.subtask-row {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.subtask-input {
+  flex: 1;
+  min-width: 200px;
+}
+
+.subtask-input label {
+  display: block;
+  font-size: 0.95rem;
+  color: #374151;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.subtask-input input {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border-radius: 0.6rem;
+  border: 1px solid #d1d5db;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.subtask-input input:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+.subtask-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.subtask-submit-btn,
+.subtask-cancel-btn {
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.6rem;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  border: none;
+}
+
+.subtask-submit-btn {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.subtask-submit-btn:hover {
+  background-color: #2563eb;
+}
+
+.subtask-cancel-btn {
+  background-color: #f3f4f6;
+  color: #374151;
+}
+
+.subtask-cancel-btn:hover {
+  background-color: #e5e7eb;
+}
+
+.subtask-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+@media (max-width: 480px) {
+  .subtask-form {
+    min-width: 100%;
+    padding: 1.5rem;
+  }
+
+  .subtask-row {
+    flex-direction: column;
+  }
+
+  .subtask-buttons {
+    flex-direction: column;
+  }
+}
+
+
+/*TEXBOX CODE*/
+.textbox-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.textbox-label {
+  font-size: 0.95rem;
+  color: #374151;
+  font-weight: 500;
+}
+
+.textbox-input {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border-radius: 0.6rem;
+  border: 1px solid #d1d5db;
+  font-size: 1rem;
+  font-family: 'Segoe UI', 'Noto Sans', sans-serif;
+  color: #111827;
+  background-color: #fff;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.textbox-input::placeholder {
+  color: #9ca3af;
+}
+
+.textbox-input:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+  outline: none;
+}
+
+.textbox-error {
+  color: #f87171;
+  font-size: 0.75rem;
+  padding-left: 0.25rem;
+}
