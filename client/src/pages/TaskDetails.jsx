@@ -1,7 +1,7 @@
-// Clean version of TaskDetail.jsx with only allowed imports and no Tailwind/clsx
+// === Fixed TaskDetail.jsx ===
 import moment from "moment";
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import { toast } from "sonner";
 import { FaBug, FaSpinner, FaTasks, FaThumbsUp, FaUser } from "react-icons/fa";
 import { GrInProgress } from "react-icons/gr";
@@ -14,15 +14,13 @@ import {
   MdTaskAlt,
 } from "react-icons/md";
 import { RxActivityLog } from "react-icons/rx";
+
 import Button from "../components/Button";
-import Loader from "../components/Loader"; // ✅ You said it's `Loader`, not `Loading`
+import Loader from "../components/Loader";
 import Tabs from "../components/Tabs";
-
 import TaskColor from "../components/task/TaskColor";
-
 import {
   useChangeSubTaskStatusMutation,
-  useGetSingleTaskQuery,
   usePostTaskActivityMutation,
 } from "../redux/slices/api/taskApiSlice";
 import {
@@ -109,29 +107,44 @@ const Activities = ({ activity, id, refetch }) => {
 
 const TaskDetail = () => {
   const { id } = useParams();
+  const location = useLocation();
 
-  if (!id) return <Loader />;
-
-  const { data, isLoading, refetch } = useGetSingleTaskQuery(id, {
-    skip: !id,
+  const [task, setTask] = useState(() => {
+    return (
+      location.state?.task ||
+      JSON.parse(localStorage.getItem("tasks") || "[]").find((t) => t._id === id)
+    );
   });
 
   const [subTaskAction, { isLoading: isSubmitting }] = useChangeSubTaskStatusMutation();
   const [selected, setSelected] = useState(0);
 
-  const task = data?.task || {};
+  if (!task) return <Loader />;
 
   const handleSubmitAction = async ({ id, subId, status }) => {
     try {
       const res = await subTaskAction({ id, subId, status: !status }).unwrap();
       toast.success(res?.message);
-      refetch();
+
+      const storedTasks = JSON.parse(localStorage.getItem("tasks") || "[]");
+      const updatedTasks = storedTasks.map((t) =>
+        t._id === id
+          ? {
+              ...t,
+              subTasks: t.subTasks.map((st) =>
+                st._id === subId ? { ...st, isCompleted: !status } : st
+              ),
+            }
+          : t
+      );
+
+      localStorage.setItem("tasks", JSON.stringify(updatedTasks));
+      const refreshedTask = updatedTasks.find((t) => t._id === id);
+      setTask(refreshedTask);
     } catch (err) {
       toast.error(err?.data?.message || err.error);
     }
   };
-
-  if (isLoading) return <Loader />;
 
   const percentage = task?.subTasks?.length ? (getCompletedSubTasks(task.subTasks) / task.subTasks.length) * 100 : 0;
 
@@ -199,7 +212,7 @@ const TaskDetail = () => {
             </div>
           </div>
         ) : (
-          <Activities activity={task.activities} refetch={refetch} id={id} />
+          <Activities activity={task.activities} refetch={() => {}} id={id} />
         )}
       </Tabs>
     </div>

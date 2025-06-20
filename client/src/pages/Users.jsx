@@ -8,23 +8,53 @@ import AddUser from "../components/AddUser";
 import ConfirmatioDialog from "../components/ConfirmationDialog";
 import UserAction from "../components/UserAction";
 
-
 const Users = () => {
+  const [users, setUsers] = useState(() => {
+    const storedUsers = localStorage.getItem("users");
+    return storedUsers ? JSON.parse(storedUsers) : summary.users;
+  });
+
   const [openDialog, setOpenDialog] = useState(false);
   const [open, setOpen] = useState(false);
   const [openAction, setOpenAction] = useState(false);
   const [selected, setSelected] = useState(null);
+  const [isEditing, setIsEditing] = useState(false);
 
-  const userActionHandler = () => {};
-  const deleteHandler = () => {};
+  const deleteHandler = () => {
+    const updatedUsers = users.filter((u) => u._id !== selected);
+    setUsers(updatedUsers);
+    localStorage.setItem("users", JSON.stringify(updatedUsers));
+    setOpenDialog(false);
+  };
+
+  const handleSubmitUser = (user) => {
+    let updatedUsers;
+
+    if (isEditing) {
+      updatedUsers = users.map((u) =>
+        u._id === user._id ? { ...user, isActive: u.isActive } : u
+      );
+    } else {
+      const newUser = { ...user, _id: Date.now().toString(), isActive: true };
+      updatedUsers = [newUser, ...users];
+    }
+
+    setUsers(updatedUsers);
+    localStorage.setItem("users", JSON.stringify(updatedUsers));
+
+    setOpen(false);
+    setSelected(null);
+    setIsEditing(false);
+  };
 
   const deleteClick = (id) => {
     setSelected(id);
     setOpenDialog(true);
   };
 
-  const editClick = (el) => {
-    setSelected(el);
+  const editClick = (user) => {
+    setSelected(user);
+    setIsEditing(true);
     setOpen(true);
   };
 
@@ -51,32 +81,18 @@ const Users = () => {
           {user.name}
         </div>
       </td>
-
       <td>{user.title}</td>
-      <td>{user.email || "user.emal.com"}</td>
+      <td>{user.email}</td>
       <td>{user.role}</td>
-
       <td>
         <button className={user?.isActive ? "status-active" : "status-disabled"}>
           {user?.isActive ? "Active" : "Disabled"}
         </button>
       </td>
-
       <td>
         <div className="user-action-buttons">
-          <Button
-            className="btn_edit"
-            label="Edit"
-            type="button"
-            onClick={() => editClick(user)}
-          />
-
-          <Button
-            className="btn_delete"
-            label="Delete"
-            type="button"
-            onClick={() => deleteClick(user?._id)}
-          />
+          <Button className="btn_edit" label="Edit" onClick={() => editClick(user)} />
+          <Button className="btn_delete" label="Delete" onClick={() => deleteClick(user._id)} />
         </div>
       </td>
     </tr>
@@ -90,7 +106,11 @@ const Users = () => {
           label="Add New User"
           icon={<IoMdAdd className="icon_lg" />}
           className="btn_add_user"
-          onClick={() => setOpen(true)}
+          onClick={() => {
+            setOpen(true);
+            setSelected(null);
+            setIsEditing(false);
+          }}
         />
       </div>
 
@@ -99,7 +119,7 @@ const Users = () => {
           <table className="user-table">
             <TableHeader />
             <tbody>
-              {summary.users?.map((user, index) => (
+              {users.map((user, index) => (
                 <TableRow key={index} user={user} />
               ))}
             </tbody>
@@ -107,12 +127,11 @@ const Users = () => {
         </div>
       </div>
 
-      
       <AddUser
         open={open}
         setOpen={setOpen}
         userData={selected}
-        key={new Date().getTime().toString()}
+        onSubmit={handleSubmitUser}
       />
 
       <ConfirmatioDialog
@@ -124,9 +143,8 @@ const Users = () => {
       <UserAction
         open={openAction}
         setOpen={setOpenAction}
-        onClick={userActionHandler}
+        onClick={() => {}}
       />
-      
     </div>
   );
 };

@@ -1,3 +1,4 @@
+// === Updated TaskCard.jsx ===
 import React, { useState } from "react";
 import {
   MdAttachFile,
@@ -20,7 +21,7 @@ const ICONS = {
   low: <MdKeyboardArrowDown />,
 };
 
-const TaskCard = ({ task }) => {
+const TaskCard = ({ task, onAddSubTask, setTaskList, onDeleteTask }) => {
   const { user } = useSelector((state) => state.auth);
   const [openSubTask, setOpenSubTask] = useState(false);
 
@@ -32,17 +33,17 @@ const TaskCard = ({ task }) => {
 
   return (
     <div className="task-card" style={{ position: "relative" }}>
-      {/* Three-dot menu moved to top-right */}
+      {/* Three Dots Dropdown */}
       <div
         className="task-card-menu-wrapper"
-        style={{
-          position: "absolute",
-          top: "0.75rem",
-          right: "0.75rem",
-          zIndex: 10,
-        }}
+        style={{ position: "absolute", top: "0.75rem", right: "0.75rem", zIndex: 10 }}
       >
-        <TaskDialog task={task} />
+        <TaskDialog
+          task={task}
+          setTaskList={setTaskList}
+          onAddSubTask={onAddSubTask}
+          onDeleteTask={onDeleteTask}
+        />
       </div>
 
       <div className="task-card-header">
@@ -80,16 +81,14 @@ const TaskCard = ({ task }) => {
 
         <div className="task-users">
           {task?.team?.map((m, index) => (
-            <div
-              key={index}
-              className={`user-avatar user-avatar-${index % BGS.length}`}
-            >
+            <div key={index} className={`user-avatar user-avatar-${index % BGS.length}`}>
               <UserInfo user={m} />
             </div>
           ))}
         </div>
       </div>
 
+      {/* Subtask Section */}
       <div className="subtask-section">
         {task?.subTasks?.length > 0 ? (
           <>
@@ -104,18 +103,21 @@ const TaskCard = ({ task }) => {
         )}
       </div>
 
+      {/* Add Subtask Button */}
       <div className="add-subtask-button-wrapper">
-        <button
-  onClick={handleAddSubTask}
-  className="add-subtask-button"
->
-
+        <button onClick={handleAddSubTask} className="add-subtask-button">
           <IoMdAdd className="icon-md" />
           <span>ADD SUBTASK</span>
         </button>
       </div>
 
-      <AddSubTask open={openSubTask} setOpen={setOpenSubTask} id={task._id} />
+      {/* Modal for Add Subtask */}
+      <AddSubTask
+        open={openSubTask}
+        setOpen={setOpenSubTask}
+        id={task._id}
+        onAdd={onAddSubTask}
+      />
     </div>
   );
 };

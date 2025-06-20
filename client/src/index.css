@@ -3377,3 +3377,55 @@ body {
   font-size: 0.75rem;
   padding-left: 0.25rem;
 }
+
+
+
+/* Fix task card menu to stay open on hover */
+.task-card-menu-wrapper {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  z-index: 10;
+}
+
+.task-card-menu-wrapper .task-menu {
+  display: none;
+  position: absolute;
+  top: 2rem;
+  right: 0;
+  background-color: white;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  border-radius: 6px;
+  min-width: 160px;
+  padding: 0.5rem 0;
+}
+
+.task-card-menu-wrapper:hover .task-menu {
+  display: block;
+}
+
+
+.task-dialog-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: white;
+  border-radius: 0.25rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 0.5rem 0;
+  z-index: 50;
+  min-width: 160px;
+}
+
+.task-dialog-dropdown p {
+  padding: 0.5rem 1rem;
+  margin: 0;
+  font-size: 0.875rem;
+  color: #333;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.task-dialog-dropdown p:hover {
+  background-color: #f1f1f1;
+}

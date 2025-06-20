@@ -6,14 +6,10 @@ import {
   MdKeyboardDoubleArrowUp,
   MdOutlineRestore,
 } from "react-icons/md";
-import { tasks } from "../assets/data";
 import Title from "../components/Title";
 import Button from "../components/Button";
-import AddUser from "../components/AddUser"; // Adjust the path if needed
-import ConfirmationDialog from "../components/ConfirmationDialog"; // Adjust the path if needed
-
-import { useSelector } from "react-redux"; // ✅ This line must be at the top
-
+import AddUser from "../components/AddUser";
+import ConfirmationDialog from "../components/ConfirmationDialog";
 import { PRIOTITYSTYELS, TASK_TYPE } from "../utils";
 
 const ICONS = {
@@ -23,11 +19,35 @@ const ICONS = {
 };
 
 const Trash = () => {
+  const [trashedTasks, setTrashedTasks] = useState(() => {
+    const stored = localStorage.getItem("trashedTasks");
+    return stored ? JSON.parse(stored) : [];
+  });
   const [openDialog, setOpenDialog] = useState(false);
   const [open, setOpen] = useState(false);
   const [msg, setMsg] = useState(null);
   const [type, setType] = useState("delete");
   const [selected, setSelected] = useState("");
+
+  const syncToStorage = (updated) => {
+    localStorage.setItem("trashedTasks", JSON.stringify(updated));
+    setTrashedTasks(updated);
+  };
+
+  const deleteRestoreHandler = () => {
+    let updated;
+    if (type === "delete") {
+      updated = trashedTasks.filter((task) => task._id !== selected);
+    } else if (type === "deleteAll") {
+      updated = [];
+    }
+
+    syncToStorage(updated);
+    setOpenDialog(false);
+    setMsg(null);
+    setSelected(null);
+    setType("delete");
+  };
 
   const deleteAllClick = () => {
     setType("deleteAll");
@@ -35,11 +55,7 @@ const Trash = () => {
     setOpenDialog(true);
   };
 
-  const restoreAllClick = () => {
-    setType("restoreAll");
-    setMsg("Do you want to restore all items in the trash?");
-    setOpenDialog(true);
-  };
+  
 
   const deleteClick = (id) => {
     setType("delete");
@@ -47,12 +63,7 @@ const Trash = () => {
     setOpenDialog(true);
   };
 
-  const restoreClick = (id) => {
-    setSelected(id);
-    setType("restore");
-    setMsg("Do you want to restore the selected item?");
-    setOpenDialog(true);
-  };
+  
 
   const TableHeader = () => (
     <thead className="table-header">
@@ -88,10 +99,7 @@ const Trash = () => {
       <td className="date-text">{new Date(item?.date).toDateString()}</td>
 
       <td className="action-buttons">
-        <Button
-          icon={<MdOutlineRestore className="icon-restore" />}
-          onClick={() => restoreClick(item._id)}
-        />
+        
         <Button
           icon={<MdDelete className="icon-delete" />}
           onClick={() => deleteClick(item._id)}
@@ -106,17 +114,12 @@ const Trash = () => {
         <Title title="Trashed Tasks" />
 
         <div className="trash-header-buttons">
-          <Button
-            label="Restore All"
-            icon={<MdOutlineRestore className="icon_lg" />}
-            className="btn-restore-all"
-            onClick={() => restoreAllClick()}
-          />
+          
           <Button
             label="Delete All"
             icon={<MdDelete className="icon_lg" />}
             className="btn-delete-all"
-            onClick={() => deleteAllClick()}
+            onClick={deleteAllClick}
           />
         </div>
       </div>
@@ -126,7 +129,7 @@ const Trash = () => {
           <table className="trash-table">
             <TableHeader />
             <tbody>
-              {tasks?.map((tk, id) => (
+              {trashedTasks?.map((tk, id) => (
                 <TableRow key={id} item={tk} />
               ))}
             </tbody>
@@ -136,7 +139,15 @@ const Trash = () => {
 
       <AddUser open={open} setOpen={setOpen} />
 
-      <ConfirmationDialog open={openDialog} setOpen={setOpenDialog} msg={msg} setMsg={setMsg} type={type} setType={setType} onClick={() => deleteRestoreHandler()} />
+      <ConfirmationDialog
+        open={openDialog}
+        setOpen={setOpenDialog}
+        msg={msg}
+        setMsg={setMsg}
+        type={type}
+        setType={setType}
+        onClick={deleteRestoreHandler}
+      />
     </div>
   );
 };
